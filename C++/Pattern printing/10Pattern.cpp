@@ -3,18 +3,19 @@
 // * D E F * 
 // * G H I * 
 // * * * * *
-#include<iostream>
+#include<bits/stdc++.h>
 using namespace std;
 int main()
 {
     int n, x=1;
     cout << ("\nEnter number of rows: ");
     cin >> n;
-    for(int r=1; r<=n; r++)
+    //where i and j are row and column number.
+    for(int i=1; i<=n; i++)
     {
-        for(int c=1; c<=n; c++)
+        for(int j=1; j<=n; j++)
         {
-            if(r == 1 || r == n|| c == 1 || c == n)
+            if(i== 1 || i== n|| j== 1 || j== n)
             {
                 cout << ("* ");
             }
