@@ -4,37 +4,88 @@ Location:India
 Github:https://github.com/dextersherry/
 
 
-<!DOCTYPE html>
-<html lang="en">
+<!--bfs algo  -->
 
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    <link rel="stylesheet" href="app.css" />
-    <title>Rotating Navigation</title>
-</head>
+#include<bits/stdc++.h>
+using namespace std;
 
-<body>
-    <div class="container">
-        <div class="circle-container">
-            <div class="circle">
-                <button id="close">
-            <i class="fas fa-times"></i>
-          </button>
-                <button id="open">
-            <i class="fas fa-bars"></i>
-          </button>
-            </div>
-        </div>
 
-        <div class="content">
-            <h1>Amazing Article</h1>
-            <small>Florin Pop</small>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium quia in ratione dolores cupiditate, maxime aliquid impedit dolorem nam dolor omnis atque fuga labore modi veritatis porro laborum minus, illo, maiores recusandae cumque ipsa
-                quos. Tenetur, consequuntur mollitia labore pariatur sunt quia harum aut. Eum maxime dolorem provident natus veritatis molestiae cumque quod voluptates ab non, tempore cupiditate? Voluptatem, molestias culpa. Corrupti, laudantium iure
-                aliquam rerum sint nam quas dolor dignissimos in error placeat quae temporibus minus optio eum soluta cupiditate! Cupiditate saepe voluptates laudantium. Ducimus consequuntur perferendis consequatur nobis exercitationem molestias fugiat
-                commodi omnis. Asperiores quia tenetur nemo ipsa.</p>
+class Graph
+{
+	int V; // No. of vertices
+
+	
+	vector<list<int>> adj;
+public:
+	Graph(int V); // Constructor
+
+	
+	void addEdge(int v, int w);
+
+	
+	void BFS(int s);
+};
+
+Graph::Graph(int V)
+{
+	this->V = V;
+	adj.resize(V);
+}
+
+void Graph::addEdge(int v, int w)
+{
+	adj[v].push_back(w); 
+}
+
+void Graph::BFS(int s)
+{
+	
+	vector<bool> visited;
+	visited.resize(V,false);
+
+	
+	list<int> queue;
+
+	
+	visited[s] = true;
+	queue.push_back(s);
+
+	while(!queue.empty())
+	{
+		
+		s = queue.front();
+		cout << s << " ";
+		queue.pop_front();
+
+		for (auto adjecent: adj[s])
+		{
+			if (!visited[adjecent])
+			{
+				visited[adjecent] = true;
+				queue.push_back(adjecent);
+			}
+		}
+	}
+}
+
+
+int main()
+{
+	
+	Graph g(4);
+	g.addEdge(0, 1);
+	g.addEdge(0, 2);
+	g.addEdge(1, 2);
+	g.addEdge(2, 0);
+	g.addEdge(2, 3);
+	g.addEdge(3, 3);
+
+	cout << "Following is Breadth First Traversal "
+		<< "(starting from vertex 2) \n";
+	g.BFS(2);
+
+	return 0;
+}
 
             <h3>My Dog</h3>
             <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2100&q=80" alt="doggy" />
